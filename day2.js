@@ -8,7 +8,7 @@ const updateDirectionalTotals = ({ direction, distance, aim }, distanceObject) =
   
 };
 
-const calculateAim = (direction, distance, aim) => {
+const calculateAim = ({ direction, distance, aim }) => {
   if (direction === "forward") return aim;
   if (direction === "up") return aim - distance;
   return aim + distance;
@@ -36,7 +36,7 @@ const determineFinalPosition = shipDirections => {
 
   for (let line of shipDirections) {
     let [direction, distance] = getDirectionAndDistanceFromLine(line);
-    aim = calculateAim(direction, distance, aim);
+    aim = calculateAim({ direction, distance, aim });
     updateDirectionalTotals({ direction, distance, aim }, finalDestination);
   };
 
